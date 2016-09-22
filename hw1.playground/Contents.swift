@@ -20,13 +20,13 @@ class Words {
 
 //: ### Are the values passed in to the **init** function and those set to the instance
 //: ### variables the same type? If not, why?
+    
 
-
-//: [EXPLAIN YOUR ANSWER HERE]
+//: THey are not the same. function parameters are optionals, while instance variables are regular values
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
+    class func arePalindromes(words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reversed())}
         let numElements = words.count
         
@@ -35,6 +35,7 @@ class Words {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
@@ -45,10 +46,10 @@ class Words {
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
-        var lenA = self.wordA.characters.count
-        var lenB = self.wordB.characters.count
+     func isAnagram() -> Bool {
+        var countLetters = [Character : Int]() //Line X
+        let lenA = self.wordA.characters.count
+        let lenB = self.wordB.characters.count
         
         if lenA != lenB {
             return false
@@ -81,7 +82,7 @@ class Words {
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -90,7 +91,8 @@ class Words {
 
 
 //: [EXPLAIN YOUR ANSWER HERE]
-    
+// we declared the type mapping without instantiating the function
+// we're declaring isAnagram as a class which doesn't work, because classes are static and can't be called like a dynamic function
     
 }
 
@@ -102,9 +104,9 @@ class Words {
 
 
 //: **DO NOT** touch any code below this point.
-Words.arePalindromes(["hih", "racecar", "mom", "wow"])
-Words.arePalindromes(["gene", "shawn", "hello"])
-var wordsObj = Words.init(wordA: "anagram", wordB: "managra")
+Words.arePalindromes(words: ["hih", "racecar", "mom", "wow"])
+Words.arePalindromes(words: ["gene", "shawn", "hello"])
+var wordsObj = Words(wordA: "anagram", wordB: "managra")
 wordsObj.isAnagram()
 wordsObj.wordA = "hello"
 wordsObj.wordB = "what"
